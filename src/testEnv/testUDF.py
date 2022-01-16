@@ -4,7 +4,10 @@ from pyspark.sql.types import StringType
 from pyspark.sql.types import DoubleType
 from pyspark.sql.functions import udf
 from pyspark.sql import SparkSession
-
+"""
+作者：luoji
+日期：2022年01月17日
+"""
 
 def avg_score(score, people):
     try:
