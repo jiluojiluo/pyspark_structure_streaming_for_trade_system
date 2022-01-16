@@ -1,12 +1,13 @@
 create database sparkStreaming;
 use sparkStreaming;
 
+
 drop table if exists StockBook;
 create table
-StockBook(
+stockBook(
 securityId char(8) default ' '  not null,
 investorId char(20) default ' ' not null,
-stockBookUnit char(6) default ' ' not null,
+stockBookUnit char(8) default ' ' not null,
 remainingBalance decimal(17,2) default '0.00' not null,
 remainingBalanceBefore decimal(17,2) default '0.00' not null,
 transactionFlag char(1) default ' ' not null,
@@ -17,7 +18,7 @@ INDEX idx_investorId using BTREE(investorId),
 INDEX idx_bookdate using BTREE(bookdate)
 );
 
-select * from StockBook;
+select * from sparkstreaming.stockBook;
 
 drop table if exists tradeDetail;
 create table
@@ -25,10 +26,12 @@ tradeDetail(
 id bigint auto_increment,
 securityId char(8) default ' '  not null,
 investorId char(20) default ' ' not null,
-tradeUnit char(6) default ' ' not null,
+tradeUnit char(8) default ' ' not null,
+counterpartyInvestorId char(20) default ' ' not null,
+counterpartyTradeUnit char(8) default ' ' not null,
 tradePrice decimal(17,2) default '0.00' not null,
-tradeNumber decimal(17,2) default '0.00' not null,
-tradeType char(10) default ' ' not null,
+tradeVolume decimal(17,2) default '0.00' not null,
+tradeType char(20) default ' ' not null,
 tradeTime datetime,
 tradedate date,
 primary key USING BTREE (id),
@@ -38,3 +41,4 @@ INDEX idx_investorId using BTREE(investorId),
 INDEX idx_bookdate using BTREE(tradedate)
 );
 
+select * from sparkstreaming.tradeDetail;
